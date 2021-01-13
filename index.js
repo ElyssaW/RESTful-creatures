@@ -42,6 +42,19 @@ app.get('/dinosaurs/new', (req, res) => {
     res.render('dinosaurs/new.ejs')
 })
 
+app.get('/prehistoric_creatures/new', (req, res) => {
+    res.render('prehistoric_creatures/new.ejs')
+})
+
+app.post('/prehistoric_creatures', (req, res) => {
+    let creatures = fs.readFileSync('./prehistoric_creatures.json') 
+    let creaturesData = JSON.parse(creatures)
+    creaturesData.push(req.body)
+
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creaturesData))
+    res.redirect('prehistoric_creatures')
+})
+
 // Write new dinosaur to file, called on submit event in /dinosaurs/new
 app.post('/dinosaurs', (req, res) => {
     let dinosaurs = fs.readFileSync('./dinosaurs.json')
