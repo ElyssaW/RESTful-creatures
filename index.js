@@ -60,6 +60,13 @@ app.get('/dinosaurs/:id', (req, res) => {
     res.render('dinosaurs/show.ejs', {myDino: dinoData[req.params.id]})
 })
 
+app.get('/prehistoric_creatures/:id', (req, res) => {
+    let prehistoricCreatures = fs.readFileSync('./prehistoric_creatures.json')
+    let creaturesData = JSON.parse(prehistoricCreatures)
+
+    res.render('prehistoric_creatures/show.ejs', {myCreature: creaturesData[req.params.id]})
+})
+
 app.listen(3000, ()=> {
     console.log('Hello from port 3000')
 })
