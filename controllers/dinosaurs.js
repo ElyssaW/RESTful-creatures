@@ -41,8 +41,7 @@ router.put('/:idx', (req, res) => {
     let dinosaurs = fs.readFileSync('./dinosaurs.json')
     let dinoData = JSON.parse(dinosaurs)
 
-    dinoData[req.params.idx].name = req.body.name
-    dinoData[req.params.idx].type = req.body.type
+    dinoData[req.params.idx] = req.body
     fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
     res.redirect('/dinosaurs')
 })
