@@ -24,8 +24,8 @@ router.put('/:idx', (req, res) => {
     let creatures = fs.readFileSync('./prehistoric_creatures.json')
     let creaturesData = JSON.parse(creatures)
 
-    creaturesData[req.params.idx].type = req.body.type
-    creaturesData[req.params.idx].img_url = req.body.img_url
+    creaturesData[req.params.idx] = req.body
+
     fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creaturesData))
     res.redirect('/prehistoric_creatures')
 })
